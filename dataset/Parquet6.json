@@ -1,0 +1,37 @@
+{
+	"name": "Parquet6",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage14",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "policy_sink.parquet",
+				"fileSystem": "challenge2"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Updated",
+				"type": "DATE"
+			},
+			{
+				"name": "Deaths",
+				"type": "INT32"
+			},
+			{
+				"name": "Deaths_Change",
+				"type": "INT32"
+			},
+			{
+				"name": "Country_Region",
+				"type": "UTF8"
+			}
+		]
+	}
+}
