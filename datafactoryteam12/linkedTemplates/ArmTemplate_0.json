@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage12'"
 		},
+		"AzureDataLakeStorage13_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage13'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -96,6 +100,10 @@
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage12_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage13_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
@@ -212,6 +220,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage12_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage13')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage13_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage13_accountKey')]"
 					}
 				}
 			},
@@ -428,16 +453,6 @@
 				"typeProperties": {
 					"connectionString": "[parameters('policy_json_connectionString')]"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
 			},
 			"dependsOn": []
 		}

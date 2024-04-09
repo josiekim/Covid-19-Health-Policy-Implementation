@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage12'"
 		},
+		"AzureDataLakeStorage13_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage13'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -100,6 +104,10 @@
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage12_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage13_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
@@ -1636,7 +1644,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage12",
+					"referenceName": "AzureDataLakeStorage13",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -1644,7 +1652,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "cases_sink.parquet",
 						"fileSystem": "challenge2"
 					},
 					"compressionCodec": "snappy"
@@ -1652,7 +1659,7 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage12')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage13')]"
 			]
 		},
 		{
@@ -1669,7 +1676,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "deaths_sink.parquet",
 						"fileSystem": "challenge2"
 					},
 					"compressionCodec": "snappy"
@@ -1694,7 +1700,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "recoveries_sink.parquet",
 						"fileSystem": "challenge2"
 					},
 					"compressionCodec": "snappy"
@@ -2509,6 +2514,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage12_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage13')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage13_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage13_accountKey')]"
 					}
 				}
 			},
