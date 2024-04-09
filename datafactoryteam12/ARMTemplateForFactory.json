@@ -35,6 +35,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage14'"
 		},
+		"AzureDataLakeStorage15_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage15'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -116,6 +120,10 @@
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage14_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage15_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
@@ -1159,7 +1167,82 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ParquetSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "ParquetReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Parquet_dates",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet7",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Parquet_dates')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet7')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/policy_parquet')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1833,6 +1916,252 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage14')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet7')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage15",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "dates_sink.parquet",
+						"fileSystem": "challenge2"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "CountryName",
+						"type": "UTF8"
+					},
+					{
+						"name": "CountryCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "RegionName",
+						"type": "UTF8"
+					},
+					{
+						"name": "RegionCode",
+						"type": "UTF8"
+					},
+					{
+						"name": "Jurisdiction",
+						"type": "UTF8"
+					},
+					{
+						"name": "Date",
+						"type": "INT96"
+					},
+					{
+						"name": "C1_School_closing",
+						"type": "INT64"
+					},
+					{
+						"name": "C1_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C2_Workplace_closing",
+						"type": "INT64"
+					},
+					{
+						"name": "C2_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C3_Cancel_public_events",
+						"type": "INT64"
+					},
+					{
+						"name": "C3_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C4_Restrictions_on_gatherings",
+						"type": "INT64"
+					},
+					{
+						"name": "C4_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C5_Close_public_transport",
+						"type": "INT64"
+					},
+					{
+						"name": "C5_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C6_Stay_at_home_requirements",
+						"type": "INT64"
+					},
+					{
+						"name": "C6_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C7_Restrictions_on_internal_movement",
+						"type": "INT64"
+					},
+					{
+						"name": "C7_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "C8_International_travel_controls",
+						"type": "INT64"
+					},
+					{
+						"name": "E1_Income_support",
+						"type": "INT64"
+					},
+					{
+						"name": "E1_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "E2_Debt_contract_relief",
+						"type": "INT64"
+					},
+					{
+						"name": "E3_Fiscal_measures",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "E4_International_support",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "H1_Public_information_campaigns",
+						"type": "INT64"
+					},
+					{
+						"name": "H1_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "H2_Testing_policy",
+						"type": "INT64"
+					},
+					{
+						"name": "H3_Contact_tracing",
+						"type": "INT64"
+					},
+					{
+						"name": "H4_Emergency_investment_in_healthcare",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "H5_Investment_in_vaccines",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "H6_Facial_Coverings",
+						"type": "INT64"
+					},
+					{
+						"name": "H6_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "H7_Vaccination_policy",
+						"type": "INT64"
+					},
+					{
+						"name": "H7_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "H8_Protection_of_elderly_people",
+						"type": "INT64"
+					},
+					{
+						"name": "H8_Flag",
+						"type": "INT64"
+					},
+					{
+						"name": "M1_Wildcard",
+						"type": "INT64"
+					},
+					{
+						"name": "StringencyIndex",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "StringencyIndexForDisplay",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "StringencyLegacyIndex",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "StringencyLegacyIndexForDisplay",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "GovernmentResponseIndex",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "GovernmentResponseIndexForDisplay",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "ContainmentHealthIndex",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "ContainmentHealthIndexForDisplay",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "EconomicSupportIndex",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "EconomicSupportIndexForDisplay",
+						"type": "DOUBLE"
+					},
+					{
+						"name": "id",
+						"type": "UTF8"
+					},
+					{
+						"name": "_rid",
+						"type": "UTF8"
+					},
+					{
+						"name": "_self",
+						"type": "UTF8"
+					},
+					{
+						"name": "_etag",
+						"type": "UTF8"
+					},
+					{
+						"name": "_attachments",
+						"type": "UTF8"
+					},
+					{
+						"name": "_ts",
+						"type": "INT64"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage15')]"
 			]
 		},
 		{
@@ -2673,6 +3002,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage14_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage15')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage15_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage15_accountKey')]"
 					}
 				}
 			},
