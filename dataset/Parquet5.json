@@ -1,0 +1,20 @@
+{
+	"name": "Parquet5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage11",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "recoveries_sink.parquet",
+				"fileSystem": "challenge2"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
