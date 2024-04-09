@@ -83,6 +83,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'policy_json'"
 		},
+		"AzureDataLakeStorage12_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage12'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
@@ -124,6 +128,10 @@
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage9_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage12_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		}
@@ -2629,36 +2637,43 @@
 								"type": "DatasetReference"
 							},
 							"name": "parquetcovid19metrics"
-						},
-						{
-							"dataset": {
-								"referenceName": "Parquet_policy",
-								"type": "DatasetReference"
-							},
-							"name": "policy"
 						}
 					],
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "Parquet2",
+								"referenceName": "Parquet5",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "Parquet4",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "Parquet3",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
 						}
 					],
 					"transformations": [
 						{
-							"name": "select1"
-						},
-						{
-							"name": "select2"
-						},
-						{
 							"name": "union1"
 						},
 						{
-							"name": "join1"
+							"name": "recoveries"
+						},
+						{
+							"name": "deaths"
+						},
+						{
+							"name": "cases"
 						}
 					],
 					"scriptLines": [
@@ -2702,119 +2717,168 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
 						"     format: 'parquet') ~> parquetcovid19metrics",
-						"source(output(",
-						"          CountryName as string,",
-						"          CountryCode as string,",
-						"          RegionName as string,",
-						"          RegionCode as string,",
-						"          Jurisdiction as string,",
-						"          Date as date,",
-						"          C1_School_closing as long,",
-						"          C1_Flag as long,",
-						"          C2_Workplace_closing as long,",
-						"          C2_Flag as long,",
-						"          C3_Cancel_public_events as long,",
-						"          C3_Flag as long,",
-						"          C4_Restrictions_on_gatherings as long,",
-						"          C4_Flag as long,",
-						"          C5_Close_public_transport as long,",
-						"          C5_Flag as long,",
-						"          C6_Stay_at_home_requirements as long,",
-						"          C6_Flag as long,",
-						"          C7_Restrictions_on_internal_movement as long,",
-						"          C7_Flag as long,",
-						"          C8_International_travel_controls as long,",
-						"          E1_Income_support as long,",
-						"          E1_Flag as long,",
-						"          E2_Debt_contract_relief as long,",
-						"          E3_Fiscal_measures as double,",
-						"          E4_International_support as double,",
-						"          H1_Public_information_campaigns as long,",
-						"          H1_Flag as long,",
-						"          H2_Testing_policy as long,",
-						"          H3_Contact_tracing as long,",
-						"          H4_Emergency_investment_in_healthcare as double,",
-						"          H5_Investment_in_vaccines as double,",
-						"          H6_Facial_Coverings as long,",
-						"          H6_Flag as long,",
-						"          H7_Vaccination_policy as long,",
-						"          H7_Flag as long,",
-						"          H8_Protection_of_elderly_people as long,",
-						"          H8_Flag as long,",
-						"          M1_Wildcard as long,",
-						"          StringencyIndex as double,",
-						"          StringencyIndexForDisplay as double,",
-						"          StringencyLegacyIndex as double,",
-						"          StringencyLegacyIndexForDisplay as double,",
-						"          GovernmentResponseIndex as double,",
-						"          GovernmentResponseIndexForDisplay as double,",
-						"          ContainmentHealthIndex as double,",
-						"          ContainmentHealthIndexForDisplay as double,",
-						"          EconomicSupportIndex as double,",
-						"          EconomicSupportIndexForDisplay as double,",
-						"          id as string,",
-						"          {_rid} as string,",
-						"          {_self} as string,",
-						"          {_etag} as string,",
-						"          {_attachments} as string,",
-						"          {_ts} as long",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false,",
-						"     format: 'parquet') ~> policy",
-						"dbocovid19metrics select(mapColumn(",
+						"dbocovid19metrics, parquetcovid19metrics union(byName: true)~> union1",
+						"union1 select(mapColumn(",
 						"          ID,",
 						"          Updated,",
-						"          Confirmed,",
-						"          Confirmed_Change,",
-						"          Deaths,",
-						"          Deaths_Change,",
 						"          Recovered,",
 						"          Recovered_Change,",
 						"          Latitude,",
 						"          Longitude,",
+						"          ISO3,",
 						"          Country_Region",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"parquetcovid19metrics select(mapColumn(",
+						"     skipDuplicateMapOutputs: true) ~> recoveries",
+						"union1 select(mapColumn(",
+						"          ID,",
+						"          Updated,",
+						"          Deaths,",
+						"          Deaths_Change,",
+						"          Latitude,",
+						"          Longitude,",
+						"          ISO3,",
+						"          Country_Region",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> deaths",
+						"union1 select(mapColumn(",
 						"          ID,",
 						"          Updated,",
 						"          Confirmed,",
 						"          Confirmed_Change,",
-						"          Deaths,",
-						"          Deaths_Change,",
-						"          Recovered,",
-						"          Recovered_Change,",
 						"          Latitude,",
 						"          Longitude,",
+						"          ISO3,",
 						"          Country_Region",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select2",
-						"select1, select2 union(byName: true)~> union1",
-						"policy, union1 join(Date == Updated,",
-						"     joinType:'outer',",
-						"     matchType:'exact',",
-						"     ignoreSpaces: false,",
-						"     broadcast: 'auto')~> join1",
-						"union1 sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true) ~> cases",
+						"recoveries sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'parquet',",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink1"
+						"     skipDuplicateMapOutputs: true) ~> sink1",
+						"deaths sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink2",
+						"cases sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink3"
 					]
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/dboCovid19_metrics_parquet')]",
 				"[concat(variables('factoryId'), '/datasets/Parquet_Covid19metrics')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet_policy')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet2')]"
+				"[concat(variables('factoryId'), '/datasets/Parquet5')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet4')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage12')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage12_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage12_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage12",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "cases_sink.parquet",
+						"fileSystem": "challenge2"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage12')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage11",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "deaths_sink.parquet",
+						"fileSystem": "challenge2"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage11')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage11",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "recoveries_sink.parquet",
+						"fileSystem": "challenge2"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage11')]"
 			]
 		}
 	]
