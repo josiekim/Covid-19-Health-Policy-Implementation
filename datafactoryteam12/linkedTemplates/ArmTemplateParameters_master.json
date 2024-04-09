@@ -17,6 +17,9 @@
 		"AzureDataLakeStorage11_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage12_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"value": ""
 		},
@@ -62,9 +65,6 @@
 		"policy_json_connectionString": {
 			"value": ""
 		},
-		"AzureDataLakeStorage12_accountKey": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
@@ -72,6 +72,9 @@
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage11_properties_typeProperties_url": {
+			"value": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage12_properties_typeProperties_url": {
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
@@ -96,9 +99,6 @@
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage9_properties_typeProperties_url": {
-			"value": "https://covid310storageaccount.dfs.core.windows.net/"
-		},
-		"AzureDataLakeStorage12_properties_typeProperties_url": {
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"containerUri": {
