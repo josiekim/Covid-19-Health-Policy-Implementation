@@ -1,5 +1,5 @@
 {
-	"name": "policy_parquet",
+	"name": "pipeline1",
 	"properties": {
 		"activities": [
 			{
@@ -47,13 +47,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Parquet_policy",
+						"referenceName": "Parquet_dates",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet6",
+						"referenceName": "Parquet7",
 						"type": "DatasetReference"
 					}
 				]
