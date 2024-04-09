@@ -95,7 +95,7 @@
 				"          Longitude as decimal(10,5)",
 				"     ),",
 				"     format: 'parquet',",
-				"     partitionFileNames:[''],",
+				"     partitionFileNames:['cases_sink.parquet'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
