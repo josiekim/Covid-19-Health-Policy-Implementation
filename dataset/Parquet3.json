@@ -2,7 +2,7 @@
 	"name": "Parquet3",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage12",
+			"referenceName": "AzureDataLakeStorage13",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "cases_sink.parquet",
 				"fileSystem": "challenge2"
 			},
 			"compressionCodec": "snappy"

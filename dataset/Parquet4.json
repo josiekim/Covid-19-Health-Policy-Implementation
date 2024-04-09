@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "deaths_sink.parquet",
 				"fileSystem": "challenge2"
 			},
 			"compressionCodec": "snappy"
