@@ -23,6 +23,9 @@
 		"AzureDataLakeStorage13_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage14_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"value": ""
 		},
@@ -81,6 +84,9 @@
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage13_properties_typeProperties_url": {
+			"value": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage14_properties_typeProperties_url": {
 			"value": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {

@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage13'"
 		},
+		"AzureDataLakeStorage14_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage14'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -83,10 +87,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'policy_data'"
 		},
-		"policy_json_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'policy_json'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
@@ -104,6 +104,10 @@
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage13_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage14_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
@@ -237,6 +241,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage13_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage14')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage14_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage14_accountKey')]"
 					}
 				}
 			},
@@ -439,19 +460,6 @@
 				"type": "CosmosDb",
 				"typeProperties": {
 					"connectionString": "[parameters('policy_data_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/policy_json')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('policy_json_connectionString')]"
 				}
 			},
 			"dependsOn": []

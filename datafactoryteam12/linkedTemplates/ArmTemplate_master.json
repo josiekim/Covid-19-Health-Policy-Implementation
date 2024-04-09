@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage13'"
 		},
+		"AzureDataLakeStorage14_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage14'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -111,6 +115,10 @@
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage14_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
@@ -188,6 +196,9 @@
 					"AzureDataLakeStorage13_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage13_accountKey')]"
 					},
+					"AzureDataLakeStorage14_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage14_accountKey')]"
+					},
 					"AzureDataLakeStorage2_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
 					},
@@ -227,9 +238,6 @@
 					"policy_data_connectionString": {
 						"value": "[parameters('policy_data_connectionString')]"
 					},
-					"policy_json_connectionString": {
-						"value": "[parameters('policy_json_connectionString')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -244,6 +252,9 @@
 					},
 					"AzureDataLakeStorage13_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage13_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage14_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage14_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStorage2_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
@@ -286,6 +297,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"policy_json_connectionString": {
+						"value": "[parameters('policy_json_connectionString')]"
 					},
 					"SqlServer1_connectionString": {
 						"value": "[parameters('SqlServer1_connectionString')]"
