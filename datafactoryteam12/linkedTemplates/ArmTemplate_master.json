@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage15'"
 		},
+		"AzureDataLakeStorage16_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage16'"
+		},
 		"AzureDataLakeStorage2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
@@ -127,6 +131,10 @@
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage16_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
@@ -210,6 +218,9 @@
 					"AzureDataLakeStorage15_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage15_accountKey')]"
 					},
+					"AzureDataLakeStorage16_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage16_accountKey')]"
+					},
 					"AzureDataLakeStorage2_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
 					},
@@ -243,9 +254,6 @@
 					"AzureSqlDatabase4_connectionString": {
 						"value": "[parameters('AzureSqlDatabase4_connectionString')]"
 					},
-					"AzureSqlDatabase5_connectionString": {
-						"value": "[parameters('AzureSqlDatabase5_connectionString')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -266,6 +274,9 @@
 					},
 					"AzureDataLakeStorage15_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage15_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage16_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage16_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStorage2_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
@@ -308,6 +319,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureSqlDatabase5_connectionString": {
+						"value": "[parameters('AzureSqlDatabase5_connectionString')]"
 					},
 					"policy_data_connectionString": {
 						"value": "[parameters('policy_data_connectionString')]"
