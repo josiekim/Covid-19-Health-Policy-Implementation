@@ -2209,31 +2209,31 @@
 										"sink": {
 											"name": "Country Name",
 											"type": "String",
-											"physicalType": "UTF8"
+											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
 											"name": "2020",
-											"type": "Double",
+											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
 											"name": "2020",
 											"type": "String",
-											"physicalType": "UTF8"
+											"physicalType": "String"
 										}
 									},
 									{
 										"source": {
 											"name": "2021",
-											"type": "Double",
+											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
 											"name": "2021",
 											"type": "String",
-											"physicalType": "UTF8"
+											"physicalType": "String"
 										}
 									}
 								],
