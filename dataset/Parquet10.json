@@ -1,0 +1,37 @@
+{
+	"name": "Parquet10",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage20",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "population.parquet",
+				"fileSystem": "srcsqlserver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Updated",
+				"type": "DATE"
+			},
+			{
+				"name": "Confirmed",
+				"type": "INT32"
+			},
+			{
+				"name": "Confirmed_Change",
+				"type": "INT32"
+			},
+			{
+				"name": "Country_Region",
+				"type": "UTF8"
+			}
+		]
+	}
+}
