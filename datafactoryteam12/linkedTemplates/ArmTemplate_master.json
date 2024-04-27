@@ -71,6 +71,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage21'"
 		},
+		"AzureDataLakeStorage22_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage22'"
+		},
 		"AzureDataLakeStorage3_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage3'"
@@ -183,6 +187,10 @@
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage22_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage3_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://covid310storageaccount.dfs.core.windows.net/"
@@ -286,6 +294,9 @@
 					"AzureDataLakeStorage21_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage21_accountKey')]"
 					},
+					"AzureDataLakeStorage22_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage22_accountKey')]"
+					},
 					"AzureDataLakeStorage3_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage3_accountKey')]"
 					},
@@ -294,9 +305,6 @@
 					},
 					"AzureDataLakeStorage5_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage5_accountKey')]"
-					},
-					"AzureDataLakeStorage6_accountKey": {
-						"value": "[parameters('AzureDataLakeStorage6_accountKey')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
@@ -340,6 +348,9 @@
 					"AzureDataLakeStorage21_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage21_properties_typeProperties_url')]"
 					},
+					"AzureDataLakeStorage22_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage22_properties_typeProperties_url')]"
+					},
 					"AzureDataLakeStorage3_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage3_properties_typeProperties_url')]"
 					},
@@ -348,9 +359,6 @@
 					},
 					"AzureDataLakeStorage5_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage5_properties_typeProperties_url')]"
-					},
-					"AzureDataLakeStorage6_properties_typeProperties_url": {
-						"value": "[parameters('AzureDataLakeStorage6_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -369,6 +377,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage6_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage6_accountKey')]"
 					},
 					"AzureDataLakeStorage7_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage7_accountKey')]"
@@ -396,6 +407,9 @@
 					},
 					"policy_json_connectionString": {
 						"value": "[parameters('policy_json_connectionString')]"
+					},
+					"AzureDataLakeStorage6_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage6_properties_typeProperties_url')]"
 					},
 					"AzureDataLakeStorage7_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage7_properties_typeProperties_url')]"
