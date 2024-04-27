@@ -4464,6 +4464,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": "dboCountry.parquet",
 						"fileSystem": "srcazuresql"
 					},
 					"compressionCodec": "snappy"
