@@ -2196,42 +2196,6 @@
 									},
 									{
 										"source": {
-											"name": "Country Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Country Code",
-											"type": "String",
-											"physicalType": "UTF8"
-										}
-									},
-									{
-										"source": {
-											"name": "Indicator Name",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Indicator Name",
-											"type": "String",
-											"physicalType": "UTF8"
-										}
-									},
-									{
-										"source": {
-											"name": "Indicator Code",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Indicator Code",
-											"type": "String",
-											"physicalType": "UTF8"
-										}
-									},
-									{
-										"source": {
 											"name": "2020",
 											"type": "Double",
 											"physicalType": "String"
